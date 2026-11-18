@@ -28,7 +28,7 @@ const config = {
     largeImage: (() => {
       const val = process.env.ACTIVITY_LARGE_IMAGE;
       if (val === "none" || val === "false" || val === "") return null;
-      return val || "https://files.catbox.moe/v97u62.png";
+      return val || "https://files.catbox.moe/182dkk.png";
     })(),
     largeText: process.env.ACTIVITY_LARGE_TEXT || null,
     details:   process.env.ACTIVITY_DETAILS || null,
