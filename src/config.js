@@ -28,7 +28,7 @@ const config = {
     largeImage: (() => {
       const val = process.env.ACTIVITY_LARGE_IMAGE;
       if (val === "none" || val === "false" || val === "") return null;
-      return val || "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Grand_Theft_Auto_VI_logo_%28with_gradient%29.svg/1280px-Grand_Theft_Auto_VI_logo_%28with_gradient%29.svg.png";
+      return val || "https://files.catbox.moe/v97u62.png";
     })(),
     largeText: process.env.ACTIVITY_LARGE_TEXT || null,
     details:   process.env.ACTIVITY_DETAILS || null,

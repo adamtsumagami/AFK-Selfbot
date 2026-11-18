@@ -54,7 +54,7 @@ pm2 save && pm2 startup
 
 Bot menampilkan Rich Presence "Playing Grand Theft Auto VI". Secara default RPC memakai **application ID resmi GTA VI di games DB Discord** (`1445160676522856458`), jadi saat seseorang **klik cover art RPC di profil, yang terbuka adalah halaman game Grand Theft Auto VI di dalam Discord** — bukan website eksternal.
 
-**Logo default**: logo resmi GTA VI dengan latar transparan dari Wikimedia Commons, dikonversi otomatis ke `mp:external/...` lewat `RichPresence.getExternal`. Tidak perlu upload asset apa pun. Kalau mau cover art sebagai gantinya, pakai `https://cdn.discordapp.com/app-icons/1445160676522856458/0788ab1237f5801d9f72af6d34665327.png`.
+**Logo default**: logo GTA VI dengan latar transparan dan padding (file lokal: `assets/gta6_padded.png`), di-host di catbox karena Discord hanya merender `mp:external/<hash>/...` (CDN attachment Discord tidak bisa dikonversi). Dikonversi otomatis lewat `RichPresence.getExternal`. Kalau mau cover art sebagai gantinya, pakai `https://cdn.discordapp.com/app-icons/1445160676522856458/0788ab1237f5801d9f72af6d34665327.png`.
 
 Kalau mau pakai asset sendiri dari Developer Portal (misal nama `gta6`):
 
