@@ -28,7 +28,7 @@ const config = {
     largeImage: (() => {
       const val = process.env.ACTIVITY_LARGE_IMAGE;
       if (val === "none" || val === "false" || val === "") return null;
-      return val || "https://cdn.discordapp.com/app-icons/1445160676522856458/0788ab1237f5801d9f72af6d34665327.png";
+      return val || "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Grand_Theft_Auto_VI_logo_%28with_gradient%29.svg/1280px-Grand_Theft_Auto_VI_logo_%28with_gradient%29.svg.png";
     })(),
     largeText: process.env.ACTIVITY_LARGE_TEXT || null,
     details:   process.env.ACTIVITY_DETAILS || null,
