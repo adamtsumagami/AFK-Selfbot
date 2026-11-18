@@ -5,7 +5,7 @@ const { config, validate } = require("./src/config");
 validate();
 
 // ─── Dependencies ────────────────────────────────────────────────────────────
-const { Client, RichPresence }  = require("discord.js-selfbot-v13");
+const { Client, RichPresence, Sweepers } = require("discord.js-selfbot-v13");
 const { createLogger }          = require("./src/logger");
 const { joinVC, handleVoiceStateUpdate, cleanup } = require("./src/voice");
 
@@ -36,9 +36,8 @@ const client = new Client({
   // 1GB VPS: kap cache supaya tidak naik terus sampai OOM
   sweepers: {
     messages:     { interval: 300, lifetime: 600 },
-    users:        { interval: 600, lifetime: 900 },
-    guildMembers: { interval: 600, lifetime: 900 },
-    presences:    { interval: 300, lifetime: 120 },
+    users:        { interval: 600, filter: Sweepers.filterByLifetime({ lifetime: 900 }) },
+    guildMembers: { interval: 600, filter: Sweepers.filterByLifetime({ lifetime: 900, getComparisonTimestamp: (m) => m?.joinedTimestamp ?? m?.user?.createdTimestamp }) },
   },
 });
 
