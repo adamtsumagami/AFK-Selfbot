@@ -52,18 +52,21 @@ pm2 save && pm2 startup
 
 ## Rich Presence (GTA VI)
 
-Bot menampilkan Rich Presence "Playing Grand Theft Auto VI" menggunakan aplikasi Discord `gtavi` (App ID: `1546574770047291453`) dengan logo yang bisa dikonfigurasi via `.env`.
+Bot menampilkan Rich Presence "Playing Grand Theft Auto VI". Secara default RPC memakai **application ID resmi GTA VI di games DB Discord** (`1445160676522856458`), jadi saat seseorang **klik cover art RPC di profil, yang terbuka adalah halaman game Grand Theft Auto VI di dalam Discord** — bukan website eksternal.
 
-**Cara pasang logo:**
+**Logo default**: cover art resmi GTA VI dari CDN Discord (`app-icons/1445160676522856458/0788ab1237f5801d9f72af6d34665327.png`), dikonversi otomatis ke `mp:external/...` lewat `RichPresence.getExternal`. Tidak perlu upload asset apa pun.
 
-1. Download salah satu logo dari folder [`assets/`](./assets):
-   - [`gta6_compact.png`](./assets/gta6_compact.png) — ukuran lebih kecil (recommended)
-   - [`gta6_logo.png`](./assets/gta6_logo.png) — ukuran standar
-2. Upload ke [Discord Developer Portal → gtavi → Art Assets](https://discord.com/developers/applications/1546574770047291453/rich-presence/assets), beri nama `gta6`.
-3. Atau upload ke channel Discord mana saja lalu copy-paste URL `cdn.discordapp.com/...`-nya ke `.env`:
+Kalau mau pakai asset sendiri dari Developer Portal (misal nama `gta6`):
+
+1. Buat/pilih aplikasi di [Discord Developer Portal](https://discord.com/developers/applications), upload logo ke Art Assets, beri nama `gta6`.
+2. Set di `.env`:
    ```env
-   ACTIVITY_LARGE_IMAGE=https://cdn.discordapp.com/attachments/...
+   RPC_APP_ID=<app id aplikasi milikmu>
+   ACTIVITY_LARGE_IMAGE=gta6
    ```
+   Catatan: dengan RPC_APP_ID custom, klik cover art tidak membuka halaman game — klik yang menuju game page hanya aktif jika RPC_APP_ID adalah game ID GTA VI.
+
+Logo dari CDN Discord lain atau URL publik apa pun juga bisa dipakai (`ACTIVITY_LARGE_IMAGE=https://...`), otomatis dikonversi ke `mp:external/...`.
 
 ## Logging
 

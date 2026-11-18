@@ -67,17 +67,24 @@ async function resolveAsset(client, appId, asset) {
     return asset;
   }
 
-  // Nama asset di Discord Developer Portal Art Assets (misal: "gta6")
+  // Nama asset di Discord Developer Portal Art Assets (misal: "gta6").
+  // Endpoint ini hanya bisa di-fetch untuk aplikasi milik sendiri; untuk
+  // game ID dari games DB akan 401/403 → asset dilewati (return null).
   try {
     const res = await fetch(`https://discord.com/api/v9/oauth2/applications/${appId}/assets`);
     if (res.ok) {
       const list = await res.json();
       const match = list.find((a) => a.name.toLowerCase() === asset.toLowerCase());
       if (match) return match.id;
+      log.warn("RPC", `Asset "${asset}" tidak ada di Art Assets aplikasi ${appId}.`);
+    } else {
+      log.warn("RPC", `Fetch asset list gagal (HTTP ${res.status}). "${asset}" hanya bisa dipakai kalau RPC_APP_ID adalah aplikasi milikmu sendiri.`);
     }
-  } catch {}
+  } catch (e) {
+    log.warn("RPC", `Fetch asset list error: ${e.message}`);
+  }
 
-  return asset;
+  return null;
 }
 
 // ─── Events ──────────────────────────────────────────────────────────────────

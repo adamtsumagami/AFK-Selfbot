@@ -22,11 +22,13 @@ const config = {
   activity: {
     name: process.env.ACTIVITY_NAME || "Grand Theft Auto VI",
     type: process.env.ACTIVITY_TYPE || "PLAYING",
-    appId: process.env.RPC_APP_ID || "1546574770047291453",
+    // Default: game ID GTA VI di Discord games DB. Dengan ini, klik cover art
+    // di profil membuka halaman game GTA VI di Discord (bukan website).
+    appId: process.env.RPC_APP_ID || "1445160676522856458",
     largeImage: (() => {
       const val = process.env.ACTIVITY_LARGE_IMAGE;
       if (val === "none" || val === "false" || val === "") return null;
-      return val || "gta6";
+      return val || "https://cdn.discordapp.com/app-icons/1445160676522856458/0788ab1237f5801d9f72af6d34665327.png";
     })(),
     largeText: process.env.ACTIVITY_LARGE_TEXT || null,
     details:   process.env.ACTIVITY_DETAILS || null,
