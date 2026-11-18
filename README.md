@@ -2,7 +2,9 @@
 
 Discord AFK selfbot — tetap di voice channel dengan auto-reconnect, custom Rich Presence (GTA VI), dan logging lengkap.
 
-> ⚠️ Self-bot melanggar ToS Discord. Gunakan dengan risiko sendiri.
+> ⚠️ Self-bot melanggar ToS Discord. Akun yang memakainya bisa di-ban. Gunakan dengan risiko sendiri.
+
+> Not affiliated with Discord or Rockstar Games. "Grand Theft Auto" and "GTA VI" are trademarks of Take-Two Interactive / Rockstar Games. The GTA VI game ID referenced here is used only to render a game Rich Presence.
 
 ## Fitur
 
@@ -89,17 +91,25 @@ Contoh output:
 ## Struktur Proyek
 
 ```
-├── index.js          # Entry point
-├── assets/           # Logo GTA VI (SVG master + PNG terrender)
-│   ├── gta6_gradient.svg  # SVG asli dari Wikimedia Commons
-│   ├── gta6_compact.png   # Logo compact 1024×1024 (recommended untuk Discord)
-│   └── gta6_logo.png      # Logo standar 1024×1024
+├── index.js             # Entry point
+├── assets/              # Logo GTA VI (SVG master + PNG transparan)
+│   ├── gta6_gradient.svg   # SVG asli dari Wikimedia Commons
+│   ├── gta6_logo.png       # Logo transparan 1024×1024
+│   ├── gta6_max.png        # Logo transparan, skala penuh
+│   ├── gta6_padded.png     # Logo + padding 78% (slot persegi RPC)
+│   └── gta6_padded88.png   # Logo + padding 88% (default RPC)
 ├── src/
-│   ├── config.js     # Konfigurasi & validasi
-│   ├── logger.js     # Logging system
-│   └── voice.js      # Voice channel management
-├── logs/             # Log files (auto-generated)
-├── .env              # Konfigurasi (jangan commit!)
-├── .env.example      # Template konfigurasi
+│   ├── config.js        # Konfigurasi & validasi
+│   ├── logger.js        # Logging system
+│   └── voice.js         # Voice channel management
+├── logs/                # Log files (auto-generated)
+├── .env                 # Konfigurasi (jangan commit!)
+├── .env.example         # Template konfigurasi
+├── LICENSE              # MIT
 └── package.json
 ```
+
+## License
+
+MIT — see [LICENSE](./LICENSE).
+
