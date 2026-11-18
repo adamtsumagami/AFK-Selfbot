@@ -46,8 +46,11 @@ async function resolveAsset(client, appId, asset) {
       const result = await RichPresence.getExternal(client, appId, asset);
       if (result && result[0]?.external_asset_path) {
         const ext = result[0].external_asset_path;
-        // Pastikan hasilnya mp:external/... (satu-satunya format URL yg didukung RPC)
+        // Pastikan hasilnya format yang didukung RPC:
+        //   mp:external/<hash>/<url>  (URL publik di-convert Discord, misal Wikimedia)
+        //   https://media.discordapp.net/... (Discord CDN pass-through, dipakai apa adanya)
         if (ext.startsWith("mp:")) return ext;
+        if (/^https?:\/\//.test(ext)) return ext;
         return ext.startsWith("external/") ? `mp:${ext}` : `mp:external/${ext}`;
       }
     } catch (e) {
