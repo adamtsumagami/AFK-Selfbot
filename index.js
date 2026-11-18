@@ -33,7 +33,19 @@ const client = new Client({
     "GUILDS",
     "GUILD_VOICE_STATES",
   ],
+  // 1GB VPS: kap cache supaya tidak naik terus sampai OOM
+  sweepers: {
+    messages:     { interval: 300, lifetime: 600 },
+    users:        { interval: 600, lifetime: 900 },
+    guildMembers: { interval: 600, lifetime: 900 },
+    presences:    { interval: 300, lifetime: 120 },
+  },
 });
+
+setInterval(() => {
+  const m = process.memoryUsage();
+  log.info("MEM", `RSS ${(m.rss / 1048576).toFixed(0)}MB, heap ${(m.heapUsed / 1048576).toFixed(0)}/${(m.heapTotal / 1048576).toFixed(0)}MB, guilds ${client.guilds.cache.size}`);
+}, 5 * 60 * 1000).unref();
 
 // ─── Helper: Resolve Rich Presence Asset ID ─────────────────────────────────
 
@@ -152,7 +164,6 @@ client.once("ready", async () => {
 
 // ── Voice State Tracking ─────────────────────────────────────────────────────
 client.on("voiceStateUpdate", (o, n) => handleVoiceStateUpdate(client, o, n));
-
 // ── Error & Connection Handling ──────────────────────────────────────────────
 client.on("error", (e) => {
   log.error("CLIENT", `Discord client error: ${e.message}`, e.stack);
